@@ -1,4 +1,6 @@
+const { query } = require("express");
 const express = require("express");
+const { validator } = require("sequelize/types/lib/utils/validator-extras");
 
 const router = express.Router();
 
@@ -6,7 +8,7 @@ const router = express.Router();
 const controller = require("../controllers/service-controller");
 
 //Create data
-router.post("/create", controller.createService)
+router.post("/create",validator.query(schema), controller.createService)
 
 //Retrieve data
 router.get("/", controller.getData)
