@@ -1,3 +1,4 @@
+// You dont have a user.js file inside service folder
 const {createUser, signIn, allUser} = require('../services/user');
 const bcrypt = require('bcrypt');
 const json = require("jsonwebtoken");
@@ -18,6 +19,9 @@ exports.createUser = async (req, res) => {
 }
 
 exports.signInUser = async (req, res) => {
+
+    // you have to insert this inside try and catch
+
     const { username, password } = req.body;
     
     await signIn({ where: { username }})
@@ -43,7 +47,12 @@ exports.signInUser = async (req, res) => {
     })
 }
 
+// why is your try and catch outside the function ?
 try{
+
+    // I cant find alluser function in your services
+    // I dont understand your code here 
+    // what does allUser do ?
     console.log(req.id);
     const response = await allUser();
     res.status(200).send({response});
